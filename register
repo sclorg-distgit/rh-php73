@@ -1,0 +1,7 @@
+cd @SCLDIR@
+
+for sub in register.d/[0-9]*
+do
+  . $sub
+done
+

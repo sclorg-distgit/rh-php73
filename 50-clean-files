@@ -1,0 +1,13 @@
+function cleanFile() {
+	if [ -d $1 ]
+	then	rmdir $1 &>/dev/null && echo "Dir. $1" || return 0
+	else 	rm    $1 && echo "File $1"
+	fi
+}
+
+find register.content -mindepth 2 -depth -print | while read source
+do
+  dest=${source/register.content/}
+  cleanFile $dest
+done
+

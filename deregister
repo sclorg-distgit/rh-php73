@@ -1,0 +1,7 @@
+cd @SCLDIR@
+
+for sub in deregister.d/[0-9]*
+do
+  . $sub
+done
+

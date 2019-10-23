@@ -1,0 +1,23 @@
+function installFile() {
+	if [ -d $1 ]
+	then	source='--directory'
+		msg="Dir. $2"
+	else 	source=$1
+		msg="File $2"
+	fi
+	owner=$(stat --format %u $1)
+	group=$(stat --format %g $1)
+	perms=$(stat --format %a $1)
+	install \
+		--mode  $perms \
+		--owner $owner \
+		--group $group \
+		$source $2 && echo $msg
+}
+
+find register.content -mindepth 2 -print | while read source
+do
+  dest=${source/register.content/}
+  installFile $source $dest
+done
+
